@@ -69,9 +69,33 @@
     }
     .tb-btn-primary:hover { background: #E2AA42; }
 
-    body { padding-top: 44px; }
-    html, body { overflow: auto; height: auto; }
-    .page { margin: 0 auto; }
+    html, body {
+      width: auto;
+      height: auto;
+      overflow: auto;
+      background: #040a12;
+    }
+
+    body {
+      padding-top: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* wrapper centres the fixed-size page and handles scaling */
+    #page-wrap {
+      padding: 24px 0 40px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .page {
+      transform-origin: top center;
+      flex-shrink: 0;
+    }
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -730,6 +754,7 @@
   </div>
 </div>
 
+<div id="page-wrap">
 <div class="page">
 
   <!-- ── HEADER ──────────────────────────────────────────── -->
@@ -1109,5 +1134,36 @@
   </footer>
 
 </div><!-- /page -->
+</div><!-- /page-wrap -->
+
+<script>
+  (function () {
+    var page = document.querySelector('.page');
+    var wrap = document.getElementById('page-wrap');
+    if (!page || !wrap) return;
+
+    function scaleToFit() {
+      // only run in screen context (not during print)
+      if (window.matchMedia('print').matches) return;
+
+      var pageW = page.offsetWidth;   // natural width in px (≈1123px at 96dpi)
+      var viewW = window.innerWidth;
+      var padding = 40;               // 20px each side
+      var available = viewW - padding;
+
+      var scale = available < pageW ? available / pageW : 1;
+      page.style.transform = 'scale(' + scale + ')';
+      page.style.transformOrigin = 'top center';
+
+      // transform doesn't affect flow, so set wrap height manually
+      var scaledH = page.offsetHeight * scale;
+      wrap.style.height = (scaledH + 48) + 'px';
+      wrap.style.alignItems = 'flex-start';
+    }
+
+    scaleToFit();
+    window.addEventListener('resize', scaleToFit);
+  })();
+</script>
 </body>
 </html>
