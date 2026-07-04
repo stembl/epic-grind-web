@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epic Grind — Adaptive Fitness Methodology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ── SCREEN TOOLBAR (hidden during print) ──────────── */
+  @media screen {
+    #toolbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 44px;
+      background: rgba(7, 14, 26, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #162433;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 9999;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    #toolbar-brand {
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #E2AA42;
+      text-decoration: none;
+    }
+
+    #toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .tb-btn-ghost {
+      color: #4A6275;
+      background: transparent;
+    }
+    .tb-btn-ghost:hover { color: #E2AA42; }
+
+    .tb-btn-primary {
+      background: #C5922A;
+      color: #070E1A;
+    }
+    .tb-btn-primary:hover { background: #E2AA42; }
+
+    body { padding-top: 44px; }
+    html, body { overflow: auto; height: auto; }
+    .page { margin: 0 auto; }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #070E1A;
+    --card:      #0C1828;
+    --card2:     #101F30;
+    --border:    #162433;
+    --gold:      #C5922A;
+    --gold-l:    #E2AA42;
+    --blue:      #3A7EC0;
+    --blue-l:    #5A9FD8;
+    --green:     #2E7D52;
+    --green-l:   #45B575;
+    --amber:     #9B6218;
+    --amber-l:   #E09838;
+    --red:       #8B3018;
+    --red-l:     #D44C28;
+    --t1:        #E8EDF5;
+    --t2:        #8A9EB5;
+    --t3:        #4A6275;
+    --rule:      #152035;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  html, body {
+    width: 297mm;
+    height: 210mm;
+    background: var(--bg);
+    color: var(--t1);
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 7.2pt;
+    line-height: 1.35;
+    overflow: hidden;
+  }
+
+  /* ── LAYOUT ──────────────────────────────────────────────── */
+  .page {
+    width: 297mm;
+    height: 210mm;
+    display: flex;
+    flex-direction: column;
+    padding: 6mm 8mm 5mm;
+    gap: 4mm;
+  }
+
+  /* ── HEADER ──────────────────────────────────────────────── */
+  .header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 0.4mm solid var(--gold);
+    padding-bottom: 3mm;
+    flex-shrink: 0;
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 6mm;
+  }
+
+  .brand-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 28pt;
+    letter-spacing: 0.04em;
+    color: var(--gold-l);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .brand-rule {
+    width: 0.35mm;
+    height: 18pt;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .brand-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13pt;
+    letter-spacing: 0.12em;
+    color: var(--t2);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .header-pills {
+    display: flex;
+    gap: 2mm;
+    justify-content: flex-end;
+    margin-bottom: 1.5mm;
+  }
+
+  .pill {
+    padding: 0.8mm 2.5mm;
+    border: 0.3mm solid var(--border);
+    border-radius: 20mm;
+    font-size: 6pt;
+    letter-spacing: 0.08em;
+    color: var(--t2);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .header-tagline {
+    font-size: 7pt;
+    color: var(--t3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── MAIN COLUMNS ─────────────────────────────────────────── */
+  .cols {
+    display: grid;
+    grid-template-columns: 72mm 1px 94mm 1px 1fr;
+    gap: 0 3.5mm;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .col-div {
+    background: var(--rule);
+    align-self: stretch;
+  }
+
+  /* ── COLUMN HEADERS ──────────────────────────────────────── */
+  .col-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 7.5pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--t3);
+    margin-bottom: 2.5mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.3mm solid var(--rule);
+  }
+
+  /* ── TIER CARDS ──────────────────────────────────────────── */
+  .tier-card {
+    background: var(--card);
+    border-radius: 1mm;
+    padding: 2mm 2.5mm;
+    margin-bottom: 1.2mm;
+    border-left: 1mm solid transparent;
+    position: relative;
+  }
+
+  .tier-card.foundation { border-left-color: var(--green-l); }
+  .tier-card.challenger { border-left-color: var(--amber-l); }
+  .tier-card.veteran    { border-left-color: var(--red-l); }
+
+  .tier-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1mm;
+  }
+
+  .tier-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 10.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1;
+  }
+
+  .tier-card.foundation .tier-name { color: var(--green-l); }
+  .tier-card.challenger .tier-name { color: var(--amber-l); }
+  .tier-card.veteran    .tier-name { color: var(--red-l); }
+
+  .tier-audience {
+    font-size: 6pt;
+    color: var(--t3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tier-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8mm;
+    margin-bottom: 1.2mm;
+  }
+
+  .meta-box {
+    background: var(--card2);
+    padding: 1.2mm 1.5mm;
+    border-radius: 0.6mm;
+    text-align: center;
+  }
+
+  .meta-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: var(--t1);
+    line-height: 1.1;
+  }
+
+  .meta-lbl {
+    font-size: 5.2pt;
+    color: var(--t3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0.4mm;
+  }
+
+  .tier-bullets {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8mm;
+  }
+
+  .tier-bullets li {
+    font-size: 6pt;
+    color: var(--t2);
+    background: var(--card2);
+    padding: 0.6mm 1.8mm;
+    border-radius: 0.5mm;
+  }
+
+  /* ── TRANSITIONS ─────────────────────────────────────────── */
+  .transition-box {
+    background: var(--card);
+    border: 0.3mm solid var(--rule);
+    border-radius: 1mm;
+    padding: 1.5mm 2mm;
+    margin-bottom: 1.5mm;
+  }
+
+  .transition-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue-l);
+    margin-bottom: 1.5mm;
+  }
+
+  .transition-flow {
+    display: flex;
+    align-items: center;
+    gap: 0.7mm;
+  }
+
+  .t-node {
+    flex: 1;
+    padding: 0.8mm 0;
+    border-radius: 0.5mm;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 5.8pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .t-node.foundation { background: #0D2218; color: var(--green-l); }
+  .t-node.blend1     { background: #111C20; color: var(--blue-l); }
+  .t-node.challenger { background: #221508; color: var(--amber-l); }
+  .t-node.blend2     { background: #151411; color: #C08050; }
+  .t-node.veteran    { background: #1E0D08; color: var(--red-l); }
+
+  .t-arrow { color: var(--t3); font-size: 5.5pt; flex-shrink: 0; }
+
+  .t-label {
+    font-size: 5.2pt;
+    color: var(--t3);
+    margin-top: 0.8mm;
+  }
+
+  /* ── SESSION STRUCTURE ────────────────────────────────────── */
+  .session-block {
+    margin-bottom: 3mm;
+  }
+
+  .session-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2mm;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    background: var(--card);
+    border-radius: 0.8mm;
+    padding: 2mm 2.5mm;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 11pt;
+    color: var(--t3);
+    line-height: 1;
+    width: 5mm;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 8.5pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--t1);
+    line-height: 1.1;
+  }
+
+  .step-detail {
+    font-size: 6pt;
+    color: var(--t2);
+    margin-top: 0.4mm;
+  }
+
+  .step-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 8pt;
+    color: var(--gold);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .step.featured {
+    background: #0E1E30;
+    border: 0.3mm solid var(--border);
+  }
+
+  .step.featured .step-num { color: var(--gold); }
+
+  .muscle-pills {
+    display: flex;
+    gap: 1mm;
+    margin-top: 1mm;
+    flex-wrap: wrap;
+  }
+
+  .mp {
+    font-size: 5.4pt;
+    padding: 0.5mm 2mm;
+    border-radius: 0.4mm;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .mp.push    { background: #1A1040; color: #8090FF; }
+  .mp.pull    { background: #0A2030; color: #40A8E0; }
+  .mp.lower   { background: #1A0E20; color: #C080E0; }
+  .mp.core    { background: #0A1A18; color: #50C0A0; }
+  .mp.spec    { background: #201808; color: var(--gold); }
+
+  /* ── 3+1 RHYTHM ──────────────────────────────────────────── */
+  .rhythm-block {
+    margin-bottom: 3mm;
+  }
+
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1mm;
+    margin-bottom: 1.5mm;
+  }
+
+  .day-cell {
+    background: var(--card);
+    border-radius: 0.8mm;
+    padding: 1.5mm 0;
+    text-align: center;
+  }
+
+  .day-icon {
+    font-size: 11pt;
+    line-height: 1.1;
+    margin-bottom: 0.5mm;
+  }
+
+  .day-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 6pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--t3);
+  }
+
+  .day-type {
+    font-size: 5.2pt;
+    color: var(--t3);
+    margin-top: 0.3mm;
+  }
+
+  .day-cell.workout  { border-top: 0.5mm solid var(--green-l); }
+  .day-cell.alt      { border-top: 0.5mm solid var(--amber-l); }
+  .day-cell.rest     { border-top: 0.5mm solid var(--rule); }
+
+  .day-cell.workout .day-icon { color: var(--green-l); }
+  .day-cell.alt     .day-icon { color: var(--amber-l); }
+  .day-cell.rest    .day-icon { color: var(--t3); }
+
+  .rhythm-note {
+    font-size: 6pt;
+    color: var(--t3);
+    font-style: italic;
+    padding: 1.5mm 2mm;
+    background: var(--card);
+    border-radius: 0.6mm;
+    border-left: 0.5mm solid var(--blue);
+  }
+
+  /* ── MONTHLY PERIODIZATION ────────────────────────────────── */
+  .period-block {
+    margin-bottom: 0;
+  }
+
+  .period-row {
+    display: grid;
+    grid-template-columns: 1fr 8mm 1fr;
+    gap: 1.5mm;
+    align-items: center;
+  }
+
+  .period-card {
+    background: var(--card);
+    border-radius: 0.8mm;
+    padding: 2mm 2.5mm;
+    text-align: center;
+  }
+
+  .period-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 7pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue-l);
+    margin-bottom: 0.8mm;
+  }
+
+  .period-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 9pt;
+    color: var(--t1);
+    margin-bottom: 0.8mm;
+  }
+
+  .period-spec {
+    font-size: 6pt;
+    color: var(--t2);
+    line-height: 1.4;
+  }
+
+  .period-arrow {
+    text-align: center;
+    font-size: 9pt;
+    color: var(--t3);
+    font-weight: bold;
+  }
+
+  .period-sub {
+    text-align: center;
+    font-size: 5.8pt;
+    color: var(--t3);
+    margin-top: 1.2mm;
+    font-style: italic;
+  }
+
+  /* ── SCIENCE COLUMN ──────────────────────────────────────── */
+  .sci-card {
+    background: var(--card);
+    border-radius: 0.8mm;
+    padding: 2mm 2.5mm;
+    margin-bottom: 1.8mm;
+  }
+
+  .sci-source {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 7.5pt;
+    letter-spacing: 0.08em;
+    color: var(--gold-l);
+    margin-bottom: 0.5mm;
+  }
+
+  .sci-ref {
+    font-size: 5.4pt;
+    color: var(--t3);
+    margin-bottom: 1mm;
+    font-style: italic;
+  }
+
+  .sci-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7mm;
+  }
+
+  .sci-item {
+    display: flex;
+    gap: 1.5mm;
+    align-items: baseline;
+    font-size: 6.2pt;
+    color: var(--t2);
+  }
+
+  .sci-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 8.5pt;
+    color: var(--t1);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── VOLUME TABLE ─────────────────────────────────────────── */
+  .vol-block { margin-top: 0; }
+
+  .vol-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 6pt;
+  }
+
+  .vol-table thead tr {
+    background: #0D1B2C;
+  }
+
+  .vol-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 6pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.9mm 1.5mm;
+    text-align: center;
+    color: var(--t3);
+    border-bottom: 0.3mm solid var(--rule);
+  }
+
+  .vol-table th:first-child { text-align: left; }
+
+  .vol-table td {
+    padding: 0.9mm 1.5mm;
+    text-align: center;
+    color: var(--t2);
+    border-bottom: 0.2mm solid var(--rule);
+  }
+
+  .vol-table td:first-child {
+    text-align: left;
+    color: var(--t1);
+    font-weight: 500;
+  }
+
+  .vol-table tr:last-child td { border-bottom: none; }
+
+  .vol-f { color: var(--green-l) !important; }
+  .vol-c { color: var(--amber-l) !important; }
+  .vol-v { color: var(--red-l)   !important; }
+
+  .science-stat {
+    display: flex;
+    gap: 1.5mm;
+    align-items: center;
+    background: #0F1F18;
+    border-left: 0.8mm solid var(--green-l);
+    border-radius: 0 0.6mm 0.6mm 0;
+    padding: 1.5mm 2mm;
+    margin-bottom: 1.8mm;
+  }
+
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 14pt;
+    line-height: 1;
+    color: var(--green-l);
+    white-space: nowrap;
+  }
+
+  .stat-text {
+    font-size: 6pt;
+    color: var(--t2);
+    line-height: 1.4;
+  }
+
+  .science-stat.amber {
+    background: #1F1608;
+    border-left-color: var(--amber-l);
+  }
+
+  .science-stat.amber .stat-num { color: var(--amber-l); }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  .footer {
+    border-top: 0.3mm solid var(--rule);
+    padding-top: 2mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .footer-citations {
+    font-size: 5pt;
+    color: var(--t3);
+    line-height: 1.5;
+    max-width: 220mm;
+  }
+
+  .footer-copy {
+    font-size: 5.2pt;
+    color: var(--t3);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .cite-label {
+    font-weight: 600;
+    color: var(--t2);
+  }
+</style>
+</head>
+<body>
+
+<!-- screen-only toolbar — not visible in print/PDF -->
+<div id="toolbar">
+  <a id="toolbar-brand" href="../index.html">Epic Grind</a>
+  <div id="toolbar-actions">
+    <a class="tb-btn tb-btn-ghost" href="fitness-methodology-r1.pdf" download>↓ Download PDF</a>
+    <button class="tb-btn tb-btn-primary" onclick="window.print()">⎙ Save as PDF</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-name">Epic Grind</span>
+      <div class="brand-rule"></div>
+      <span class="brand-sub">Adaptive Fitness Methodology</span>
+    </div>
+    <div class="header-right">
+      <div class="header-pills">
+        <span class="pill">Equipment-free</span>
+        <span class="pill">No one-size-fits-all</span>
+        <span class="pill">Research-grounded</span>
+        <span class="pill">High school → Military</span>
+      </div>
+      <div class="header-tagline">
+        A single adaptive engine precisely scales every session — push, pull, lower, core, sets, reps, rest — from a first workout to field-ready performance.
+      </div>
+    </div>
+  </header>
+
+  <!-- ── THREE COLUMNS ───────────────────────────────────── -->
+  <div class="cols">
+
+    <!-- ╔══ COLUMN 1: THREE TIERS ══════════════════════════╗ -->
+    <div class="col-1">
+      <div class="col-head">The Three-Tier System</div>
+
+      <div class="tier-card foundation">
+        <div class="tier-head">
+          <span class="tier-name">Foundation</span>
+          <span class="tier-audience">High School · Novice</span>
+        </div>
+        <div class="tier-meta">
+          <div class="meta-box">
+            <div class="meta-val">20–30<span style="font-size:5.5pt;font-weight:500"> min</span></div>
+            <div class="meta-lbl">Session</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-val">2→3<span style="font-size:5.5pt;font-weight:500"> sets</span></div>
+            <div class="meta-lbl">Per Exercise</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-val">5–9<span style="font-size:5.5pt;font-weight:500"> /wk</span></div>
+            <div class="meta-lbl">Sets/Muscle</div>
+          </div>
+        </div>
+        <ul class="tier-bullets">
+          <li>Total-body sessions</li>
+          <li>8–12 reps</li>
+          <li>60–90 sec rest</li>
+          <li>Form before load</li>
+          <li>NSCA &amp; AAP backed</li>
+        </ul>
+      </div>
+
+      <div class="tier-card challenger">
+        <div class="tier-head">
+          <span class="tier-name">Challenger</span>
+          <span class="tier-audience">Active Adult · Intermediate</span>
+        </div>
+        <div class="tier-meta">
+          <div class="meta-box">
+            <div class="meta-val">35–50<span style="font-size:5.5pt;font-weight:500"> min</span></div>
+            <div class="meta-lbl">Session</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-val">3<span style="font-size:5.5pt;font-weight:500"> sets</span></div>
+            <div class="meta-lbl">Per Exercise</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-val">10–15<span style="font-size:5.5pt;font-weight:500"> /wk</span></div>
+            <div class="meta-lbl">Sets/Muscle</div>
+          </div>
+        </div>
+        <ul class="tier-bullets">
+          <li>Push / Pull / Legs split</li>
+          <li>Antagonist supersets</li>
+          <li>Monthly A/B periodization</li>
+          <li>4–15 reps (schedule-dependent)</li>
+        </ul>
+      </div>
+
+      <div class="tier-card veteran">
+        <div class="tier-head">
+          <span class="tier-name">Veteran</span>
+          <span class="tier-audience">Military · Athlete · Advanced</span>
+        </div>
+        <div class="tier-meta">
+          <div class="meta-box">
+            <div class="meta-val">50–60<span style="font-size:5.5pt;font-weight:500"> min</span></div>
+            <div class="meta-lbl">Session</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-val">4<span style="font-size:5.5pt;font-weight:500"> sets</span></div>
+            <div class="meta-lbl">Per Exercise</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-val">15–20<span style="font-size:5.5pt;font-weight:500"> /wk</span></div>
+            <div class="meta-lbl">Sets/Muscle</div>
+          </div>
+        </div>
+        <ul class="tier-bullets">
+          <li>AFT-aligned (Army 2025)</li>
+          <li>Concurrent training</li>
+          <li>4-week mesocycle</li>
+          <li>Deload week built in</li>
+          <li>3–5 strength protocol</li>
+        </ul>
+      </div>
+
+      <div class="transition-box">
+        <div class="transition-title">Gradual Transitions — No Cliff Edges</div>
+        <div class="transition-flow">
+          <div>
+            <div class="t-node foundation">L1–7<br>Foundation</div>
+          </div>
+          <span class="t-arrow">→</span>
+          <div>
+            <div class="t-node blend1">L8–12<br>Blend</div>
+          </div>
+          <span class="t-arrow">→</span>
+          <div>
+            <div class="t-node challenger">L13–21<br>Challenger</div>
+          </div>
+          <span class="t-arrow">→</span>
+          <div>
+            <div class="t-node blend2">L22–28<br>Blend</div>
+          </div>
+          <span class="t-arrow">→</span>
+          <div>
+            <div class="t-node veteran">L29+<br>Veteran</div>
+          </div>
+        </div>
+        <div class="t-label" style="margin-top:0.8mm;">
+          Exercises scale underneath the user — sprint squat replaces squat hold, diamond push-up emerges, density protocols unlock.
+        </div>
+      </div>
+      <div class="col-head" style="margin-top: 2.5mm;">Weekly Volume (sets/muscle/week)</div>
+      <div class="vol-block">
+        <table class="vol-table">
+          <thead>
+            <tr>
+              <th>Muscle Group</th>
+              <th style="color: var(--green-l);">Foundation</th>
+              <th style="color: var(--amber-l);">Challenger</th>
+              <th style="color: var(--red-l);">Veteran</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Upper Push</td>
+              <td class="vol-f">6–9</td><td class="vol-c">10–15</td><td class="vol-v">15–20</td>
+            </tr>
+            <tr>
+              <td>Upper Pull</td>
+              <td class="vol-f">6–9</td><td class="vol-c">8–12</td><td class="vol-v">12–18</td>
+            </tr>
+            <tr>
+              <td>Lower Body</td>
+              <td class="vol-f">6–9</td><td class="vol-c">10–15</td><td class="vol-v">15–18</td>
+            </tr>
+            <tr>
+              <td>Core</td>
+              <td class="vol-f">6–9</td><td class="vol-c">10–15</td><td class="vol-v">15–20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /col-1 -->
+
+    <div class="col-div"></div>
+
+    <!-- ╔══ COLUMN 2: SESSION & SCHEDULE ═══════════════════╗ -->
+    <div class="col-2">
+      <div class="col-head">Session Architecture</div>
+
+      <div class="session-block">
+        <div class="session-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">Warmup</div>
+              <div class="step-detail">Dynamic movement — inchworm, hip circles, arm swings. Activates posterior chain and shoulders.</div>
+            </div>
+            <div class="step-time">5 min</div>
+          </div>
+          <div class="step featured">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">Foundation Block</div>
+              <div class="step-detail">Every muscle pattern, every session — regardless of tier. Non-negotiable.</div>
+              <div class="muscle-pills">
+                <span class="mp push">Push</span>
+                <span class="mp pull">Pull</span>
+                <span class="mp lower">Lower</span>
+                <span class="mp core">Core</span>
+              </div>
+            </div>
+            <div class="step-time">Scales<br>by tier</div>
+          </div>
+          <div class="step" style="border: 0.3mm solid #201808;">
+            <div class="step-num" style="color: var(--gold);">3</div>
+            <div class="step-content">
+              <div class="step-title" style="color: var(--gold-l);">Specialization Slot</div>
+              <div class="step-detail" style="margin-bottom:0.8mm;">Chosen each session. Shapes personal workout trajectory and focus over time.</div>
+              <div class="muscle-pills">
+                <span class="mp spec">Strength</span>
+                <span class="mp spec">Conditioning</span>
+                <span class="mp spec">Flexibility</span>
+                <span class="mp spec">Recovery</span>
+              </div>
+            </div>
+            <div class="step-time" style="color: var(--gold);">10–15<br>min</div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-title">Cooldown</div>
+              <div class="step-detail">Static stretches — 30–60 sec holds. Post-workout only. Pre-workout static stretch reduces force output. (Huberman Ep. 94)</div>
+            </div>
+            <div class="step-time">5 min</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-head" style="margin-top: 2.5mm;">3 + 1 Weekly Rhythm</div>
+
+      <div class="rhythm-block">
+        <div class="week-grid">
+          <div class="day-cell workout">
+            <div class="day-icon">●</div>
+            <div class="day-name">Mon</div>
+            <div class="day-type">Workout</div>
+          </div>
+          <div class="day-cell rest">
+            <div class="day-icon">○</div>
+            <div class="day-name">Tue</div>
+            <div class="day-type">Recovery</div>
+          </div>
+          <div class="day-cell workout">
+            <div class="day-icon">●</div>
+            <div class="day-name">Wed</div>
+            <div class="day-type">Workout</div>
+          </div>
+          <div class="day-cell rest">
+            <div class="day-icon">○</div>
+            <div class="day-name">Thu</div>
+            <div class="day-type">Recovery</div>
+          </div>
+          <div class="day-cell workout">
+            <div class="day-icon">●</div>
+            <div class="day-name">Fri</div>
+            <div class="day-type">Workout</div>
+          </div>
+          <div class="day-cell alt">
+            <div class="day-icon">◐</div>
+            <div class="day-name">Sat</div>
+            <div class="day-type">Zone 2 Alt</div>
+          </div>
+          <div class="day-cell rest">
+            <div class="day-icon">○</div>
+            <div class="day-name">Sun</div>
+            <div class="day-type">Rest</div>
+          </div>
+        </div>
+        <div class="rhythm-note">
+          3–4×/week is the empirically optimal habit-formation frequency (Kaushal &amp; Rhodes 2015). 50% of gym members drop out before week 6 — short, consistent sessions outperform long, infrequent ones at every fitness level.
+        </div>
+      </div>
+
+      <div class="col-head" style="margin-top: 2.5mm;">Monthly Periodization</div>
+
+      <div class="period-block">
+        <div class="period-row">
+          <div class="period-card">
+            <div class="period-label">Month A</div>
+            <div class="period-name">Strength</div>
+            <div class="period-spec">4–8 reps · 3–4 sets<br>2–4 min rest between sets<br><em>Neural adaptation</em></div>
+          </div>
+          <div class="period-arrow">⇄</div>
+          <div class="period-card">
+            <div class="period-label">Month B</div>
+            <div class="period-name">Hypertrophy</div>
+            <div class="period-spec">8–15 reps · 2–3 sets<br>~90 sec rest between sets<br><em>Structural adaptation</em></div>
+          </div>
+        </div>
+        <div class="period-sub">
+          Alternating monthly captures both neural strength gains and structural hypertrophy gains. Neither alone is optimal. — Huberman Foundational Protocol [verified]
+        </div>
+      </div>
+
+    </div><!-- /col-2 -->
+
+    <div class="col-div"></div>
+
+    <!-- ╔══ COLUMN 3: SCIENCE + VOLUME ═════════════════════╗ -->
+    <div class="col-3">
+      <div class="col-head">Adaptive Intake</div>
+
+      <div class="sci-card" style="background:#0A1828; border:0.3mm solid #1A3A5A; margin-bottom:2.5mm;">
+        <div class="sci-items">
+          <div class="sci-item"><span class="sci-val" style="font-size:7.5pt; color:var(--blue-l);">5</span>movement calibrations at session one — push, pull, lower, core, and cardio endurance</div>
+          <div class="sci-item"><span class="sci-val" style="font-size:7.5pt; color:var(--blue-l);">Live</span>performance data — not self-reported level — determines starting prescription</div>
+          <div class="sci-item"><span class="sci-val" style="font-size:7.5pt; color:var(--blue-l);">Auto</span>adjusts every session: "too hard" reduces volume; "too easy" scales prescription up</div>
+          <div class="sci-item" style="margin-top:0.5mm; color:var(--t3); font-style:italic;">No buckets. No drop-down menus. Continuous placement from the first rep.</div>
+        </div>
+      </div>
+
+      <div class="col-head">Research Foundation</div>
+
+      <div class="science-stat">
+        <div class="stat-num">50%</div>
+        <div class="stat-text">of gym members drop out before week 6. The 3-day structure is the evidence-based response — habit formation peaks at 3–4×/week in the critical first 6 weeks.</div>
+      </div>
+
+      <div class="science-stat amber">
+        <div class="stat-num">+0.37%</div>
+        <div class="stat-text">additional muscle growth per additional weekly set above minimum volume. Every set is accounted for and prescribed precisely. (Schoenfeld 2017)</div>
+      </div>
+
+      <div class="sci-card">
+        <div class="sci-source">Schoenfeld 2017</div>
+        <div class="sci-ref">Journal of Sports Sciences, 35(11), 1073–1082</div>
+        <div class="sci-items">
+          <div class="sci-item"><span class="sci-val">≤4 sets</span>Substantial gains — viable for time-constrained users</div>
+          <div class="sci-item"><span class="sci-val">5–9 sets</span>~80% of maximum hypertrophic gains (Foundation tier)</div>
+          <div class="sci-item"><span class="sci-val">10–15 sets</span>Maximizes hypertrophy (Challenger tier)</div>
+          <div class="sci-item"><span class="sci-val">15–20 sets</span>Well-trained optimum per Galpin (Veteran tier)</div>
+        </div>
+      </div>
+
+      <div class="sci-card">
+        <div class="sci-source">Huberman Lab — Foundational Protocol</div>
+        <div class="sci-ref">Newsletter + Podcast Ep. 94 "Fitness Toolkit"</div>
+        <div class="sci-items">
+          <div class="sci-item"><span class="sci-val">5–15 sets</span>Per muscle per week, 30–80% 1RM — most scientifically supported</div>
+          <div class="sci-item"><span class="sci-val">A / B</span>Monthly periodization: strength ↔ hypertrophy alternating</div>
+          <div class="sci-item"><span class="sci-val">Zone 2</span>180–200 min/week target; 4th optional day builds this base</div>
+        </div>
+      </div>
+
+      <div class="sci-card">
+        <div class="sci-source">NSCA (2009) · AAP (2020) · Army AFT (2025)</div>
+        <div class="sci-ref">Youth RT Position Stand · Pediatrics · Army Directive 2025-06</div>
+        <div class="sci-items">
+          <div class="sci-item"><span class="sci-val">2–3×/wk</span>Non-consecutive days — NSCA Youth RT standard (Foundation)</div>
+          <div class="sci-item"><span class="sci-val">Form first</span>Neural gains dominate in novice — load is secondary to technique</div>
+          <div class="sci-item"><span class="sci-val">AFT events</span>Deadlift · Push-up · Sprint-Drag-Carry · Plank · 2-Mile Run — Veteran tier sessions address all five</div>
+        </div>
+      </div>
+
+    </div><!-- /col-3 -->
+
+  </div><!-- /cols -->
+
+  <!-- ── FOOTER ───────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-citations">
+      <span class="cite-label">Research basis: </span>
+      Schoenfeld BJ et al. (2017). J Sports Sci 35(11):1073–1082. ·
+      Huberman Lab Newsletter: Foundational Fitness Protocol; Podcast Ep. 94. ·
+      NSCA Position Stand: Youth Resistance Training (2009). J Strength Cond Res 23(Suppl). ·
+      AAP Clinical Report: Resistance Training for Children and Adolescents (2020). Pediatrics. ·
+      Army Directive 2025-06: Army Fitness Test (AFT), effective June 1 2025. ·
+      Kaushal N &amp; Rhodes RE (2015). Habit formation and physical activity. Psychol Sport Exerc 16:17–24. ·
+      Galpin AJ / Huberman Lab: Building Strength and Power (transcript verified). ·
+      SDT 2025 study (n=60): autonomy-supported PE, intrinsic motivation +99%, MVPA +64%. (Carried from prior synthesis session — primary paper pending independent verification.)
+    </div>
+    <div class="footer-copy">
+      © 2026 Steve Embleton. All rights reserved.<br>
+      Epic Grind — Adaptive Fitness Methodology<br>
+      Confidential — Not for public distribution.
+    </div>
+  </footer>
+
+</div><!-- /page -->
+</body>
+</html>
