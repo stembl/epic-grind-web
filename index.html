@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epic Grind — Train Like the World Depends On It</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #070E1A;
+    --card:    #0C1828;
+    --card2:   #101F30;
+    --border:  #162433;
+    --gold:    #C5922A;
+    --gold-l:  #E2AA42;
+    --blue-l:  #5A9FD8;
+    --green-l: #45B575;
+    --amber-l: #E09838;
+    --red-l:   #D44C28;
+    --t1:      #E8EDF5;
+    --t2:      #8A9EB5;
+    --t3:      #4A6275;
+    --rule:    #152035;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--t1);
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ──────────────────────────────────────────────── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(7, 14, 26, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  .nav-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold-l);
+  }
+
+  .nav-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-l);
+    background: rgba(224, 152, 56, 0.12);
+    border: 1px solid rgba(224, 152, 56, 0.3);
+    border-radius: 4px;
+    padding: 3px 10px;
+  }
+
+  /* ── HERO ──────────────────────────────────────────────── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(197, 146, 42, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 50%, rgba(58, 126, 192, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6rem);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: var(--t1);
+    margin-bottom: 24px;
+  }
+
+  .hero-title em {
+    color: var(--gold-l);
+    font-style: normal;
+  }
+
+  .hero-sub {
+    max-width: 520px;
+    font-size: 1.05rem;
+    color: var(--t2);
+    margin-bottom: 48px;
+    line-height: 1.65;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: #070E1A;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-l); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--t1);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--t3); color: var(--gold-l); }
+
+  /* ── CONSTRUCTION BANNER ──────────────────────────────── */
+  .construction {
+    margin: 0 auto 80px;
+    max-width: 640px;
+    background: var(--card);
+    border: 1px solid rgba(224, 152, 56, 0.25);
+    border-radius: 6px;
+    padding: 24px 32px;
+    text-align: center;
+  }
+
+  .construction-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber-l);
+    margin-bottom: 10px;
+  }
+
+  .construction p {
+    font-size: 0.9rem;
+    color: var(--t2);
+    line-height: 1.6;
+  }
+
+  /* ── PILLARS ──────────────────────────────────────────── */
+  .section {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--t3);
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .pillar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+  }
+
+  .pillar-icon {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .pillar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--t1);
+    margin-bottom: 8px;
+  }
+
+  .pillar p {
+    font-size: 0.83rem;
+    color: var(--t2);
+    line-height: 1.55;
+  }
+
+  /* ── TIERS ──────────────────────────────────────────────── */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .tiers { grid-template-columns: 1fr; }
+  }
+
+  .tier {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+  }
+
+  .tier-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .tier-subtitle {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--t3);
+    margin-bottom: 12px;
+  }
+
+  .tier p {
+    font-size: 0.82rem;
+    color: var(--t2);
+    line-height: 1.55;
+  }
+
+  .tier-f { border-left: 3px solid var(--green-l); }
+  .tier-f .tier-name { color: var(--green-l); }
+  .tier-c { border-left: 3px solid var(--amber-l); }
+  .tier-c .tier-name { color: var(--amber-l); }
+  .tier-v { border-left: 3px solid var(--red-l); }
+  .tier-v .tier-name { color: var(--red-l); }
+
+  /* ── DOCS ──────────────────────────────────────────────── */
+  .doc-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    text-decoration: none;
+    transition: border-color 0.2s;
+    margin-bottom: 12px;
+  }
+
+  .doc-card:hover { border-color: var(--gold); }
+
+  .doc-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .doc-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--t1);
+    margin-bottom: 3px;
+  }
+
+  .doc-desc {
+    font-size: 0.8rem;
+    color: var(--t2);
+  }
+
+  .doc-arrow {
+    margin-left: auto;
+    color: var(--t3);
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  footer .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--t3);
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { padding: 64px 20px 56px; }
+    footer { padding: 24px 20px; }
+    .section { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Epic Grind</span>
+  <span class="nav-badge">Early Alpha · Coming Soon</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">A fitness RPG grounded in science</div>
+  <h1 class="hero-title">Train Like<br>The World<br><em>Depends On It</em></h1>
+  <p class="hero-sub">
+    A mobile fitness experience that scales from first workout to field-ready performance.
+    No one-size-fits-all. No guessing. Every session adapts to where you are today.
+  </p>
+  <div class="cta-row">
+    <a href="#methodology" class="btn-primary">&#9654; See the Methodology</a>
+    <a href="#tiers" class="btn-secondary">How It Works</a>
+  </div>
+</section>
+
+<div style="max-width:1040px; margin:0 auto; padding: 0 24px;">
+  <div class="construction">
+    <div class="construction-label">&#9888; Under Construction</div>
+    <p>
+      Epic Grind is in active development. Early alpha access goes to a select group of testers soon.
+      The methodology is solid — the gates are still going up. Check back here for the download link
+      when the first build ships.
+    </p>
+  </div>
+</div>
+
+<section class="section" id="methodology">
+  <div class="section-head">The Methodology</div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">&#9651;</div>
+      <div class="pillar-title">Adaptive Intake</div>
+      <p>Five calibration movements at session one capture real performance data — not a self-reported level. Every target derives from that baseline.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">&#9632;</div>
+      <div class="pillar-title">3 + 1 Weekly Rhythm</div>
+      <p>Three strength sessions, one Zone 2 alternative day. Research-backed habit formation — 3–4×/week is the optimal frequency window.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">&#9670;</div>
+      <div class="pillar-title">Push · Pull · Lower · Core</div>
+      <p>Every session trains all four movement patterns. Nothing accumulates imbalance. Muscle groups recover while others work.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">&#8635;</div>
+      <div class="pillar-title">Monthly Periodization</div>
+      <p>Month A builds neural strength (4–8 reps, 3–4 sets). Month B builds structural mass (8–15 reps, 2–3 sets). Alternating captures both adaptations.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">&#9651;</div>
+      <div class="pillar-title">No Buckets</div>
+      <p>Foundation, Challenger, and Veteran are labels, not ceilings. The prescription engine places every user on a continuous scale from the first rep.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">&#9733;</div>
+      <div class="pillar-title">High School → Military</div>
+      <p>Range validated against NSCA youth standards, AAP guidelines, and Army AFT requirements. One engine, the full spectrum.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tiers">
+  <div class="section-head">Three Tiers — One Continuous Scale</div>
+  <div class="tiers">
+    <div class="tier tier-f">
+      <div class="tier-name">Foundation</div>
+      <div class="tier-subtitle">High School · Novice</div>
+      <p>20–30 min sessions. 2–3 sets. 5–9 reps. Total-body compound movements. Form before load. NSCA & AAP backed.</p>
+    </div>
+    <div class="tier tier-c">
+      <div class="tier-name">Challenger</div>
+      <div class="tier-subtitle">Active Adult · Intermediate</div>
+      <p>35–50 min sessions. 3 sets. 10–15 reps. Push/Pull/Legs split with antagonist supersets. Monthly A/B periodization.</p>
+    </div>
+    <div class="tier tier-v">
+      <div class="tier-name">Veteran</div>
+      <div class="tier-subtitle">Military · Athlete · Advanced</div>
+      <p>50–60 min sessions. 4 sets. 15–20 reps. AFT-aligned, concurrent training, 4-week mesocycles, deload built in.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="docs">
+  <div class="section-head">Documentation</div>
+
+  <a class="doc-card" href="docs/fitness-methodology-r1.pdf" target="_blank">
+    <span class="doc-icon">&#128196;</span>
+    <div>
+      <div class="doc-title">Adaptive Fitness Methodology</div>
+      <div class="doc-desc">One-page overview of the intake engine, session architecture, tier system, and research foundation. PDF · A4 landscape</div>
+    </div>
+    <span class="doc-arrow">&#8594;</span>
+  </a>
+
+  <a class="doc-card" href="https://github.com/stembl/epic-grind-web" target="_blank">
+    <span class="doc-icon">&#128279;</span>
+    <div>
+      <div class="doc-title">Source & Releases</div>
+      <div class="doc-desc">Android APK releases and source code on GitHub. No login required to download.</div>
+    </div>
+    <span class="doc-arrow">&#8594;</span>
+  </a>
+</section>
+
+<footer>
+  <span class="brand">Epic Grind</span>
+  <p>© 2026 Steve Embleton. All rights reserved. &nbsp;·&nbsp; Not for public distribution. &nbsp;·&nbsp; Early development build.</p>
+</footer>
+
+</body>
+</html>
