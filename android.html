@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epic Grind · Android Install</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eg.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Epic Grind</a>
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    Early Alpha · Select Access
+  </div>
+</nav>
+
+<a href="index.html" class="back-link">← Back</a>
+
+<div class="page-hero" style="max-width:1040px; margin:0 auto;">
+  <div class="page-eyebrow">Android · Sideload Install</div>
+  <h1 class="page-title">Get It On <em>Android</em></h1>
+  <p class="page-sub">
+    Epic Grind isn't on the Play Store yet. You'll install it directly from the APK file —
+    a five-minute setup done once on your device.
+  </p>
+</div>
+
+<div class="install-wrap">
+
+  <div class="wip-banner">
+    <div class="wip-banner-label">⚠ Build Not Yet Released</div>
+    <p>
+      The first APK ships with the early alpha cohort. These instructions are here so you're ready
+      when the link arrives. Step 4 will become a live download once the build is out.
+    </p>
+  </div>
+
+  <div class="section-label">Install Steps</div>
+
+  <div class="step-list">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Allow installs from unknown sources</div>
+        <p>
+          Android blocks apps from outside the Play Store by default.
+          Go to <strong>Settings → Apps → Special app access → Install unknown apps</strong>,
+          then find your browser (Chrome or Firefox) and toggle it on.
+        </p>
+        <span class="note">Path varies by device — search "install unknown apps" in Settings if you can't find it.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Open this page on your phone</div>
+        <p>
+          The download needs to land directly on your Android device.
+          If you're reading this on a computer, open
+          <strong>epicgrind.app/android</strong> in your phone's browser
+          or scan the QR code below when it's available.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Download the APK</div>
+        <p>
+          Tap the download button below. The file is roughly 20–40 MB.
+          Your browser will download it to your device's Downloads folder.
+        </p>
+        <!-- HOOK: swap href and add class="ready" when build is live -->
+        <a class="dl-button" href="#" aria-disabled="true">
+          <div>
+            <div class="dl-button-label">epic-grind-alpha.apk</div>
+            <div class="dl-button-sub">Not yet available — check back soon</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Run the installer</div>
+        <p>
+          Open your Downloads folder and tap the APK file.
+          Android will ask you to confirm the install — tap <strong>Install</strong>.
+          The app appears on your home screen when it's done.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">Launch Epic Grind</div>
+        <p>
+          Tap the app icon. Create an account or sign in.
+          Orin will take it from there.
+        </p>
+      </div>
+    </div>
+
+    <div class="step step-hook">
+      <div class="step-num">↻</div>
+      <div class="step-body">
+        <div class="step-title">Updating future builds</div>
+        <p>
+          Alpha builds update frequently. When a new APK ships, repeat steps 3–4.
+          Your account and progress carry over automatically.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Troubleshooting</div>
+
+  <div class="step-list">
+    <div class="step">
+      <div class="step-num">?</div>
+      <div class="step-body">
+        <div class="step-title">"App not installed" error</div>
+        <p>
+          Usually means an older version of the APK is still on the device.
+          Go to <strong>Settings → Apps → Epic Grind</strong> and uninstall it first,
+          then retry. Your account data lives on the server — it won't be lost.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">?</div>
+      <div class="step-body">
+        <div class="step-title">Google Play Protect warning</div>
+        <p>
+          Play Protect may flag unsigned apps. Tap <strong>Install anyway</strong> —
+          the warning is expected for builds outside the Play Store.
+          Epic Grind does not collect data beyond what's required for your account.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-brand">Epic Grind</span>
+  <p>© 2026 Steve Embleton · Not for public distribution · Early development</p>
+</footer>
+
+</body>
+</html>

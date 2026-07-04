@@ -7,370 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg:      #070E1A;
-    --card:    #0C1828;
-    --card2:   #101F30;
-    --border:  #162433;
-    --gold:    #C5922A;
-    --gold-l:  #E2AA42;
-    --blue-l:  #5A9FD8;
-    --green-l: #45B575;
-    --amber-l: #E09838;
-    --red-l:   #D44C28;
-    --t1:      #E8EDF5;
-    --t2:      #8A9EB5;
-    --t3:      #4A6275;
-    --rule:    #152035;
-  }
-
-  html, body {
-    background: var(--bg);
-    color: var(--t1);
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
-  /* ── NAV ─────────────────────────────────────────── */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 48px;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(7, 14, 26, 0.94);
-    backdrop-filter: blur(10px);
-    z-index: 100;
-  }
-
-  .nav-brand {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--gold-l);
-  }
-
-  .nav-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--t3);
-  }
-
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--amber-l);
-    opacity: 0.7;
-  }
-
-  /* ── HERO ─────────────────────────────────────────── */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 96px 24px 72px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 55% 45% at 50% -5%, rgba(197, 146, 42, 0.13) 0%, transparent 65%),
-      radial-gradient(ellipse 30% 50% at 85% 60%, rgba(58, 90, 140, 0.05) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero-rule {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-
-  .hero-rule-line {
-    width: 32px;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.5;
-  }
-
-  .hero-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .hero-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: clamp(3.2rem, 9vw, 6.5rem);
-    letter-spacing: 0.025em;
-    text-transform: uppercase;
-    line-height: 0.93;
-    color: var(--t1);
-    margin-bottom: 28px;
-  }
-
-  .hero-title em {
-    color: var(--gold-l);
-    font-style: normal;
-  }
-
-  .hero-sub {
-    max-width: 480px;
-    font-size: 1rem;
-    color: var(--t2);
-    line-height: 1.7;
-    font-style: italic;
-  }
-
-  /* ── GATE CARD ─────────────────────────────────────── */
-  .gate-wrap {
-    max-width: 600px;
-    margin: 0 auto 72px;
-    padding: 0 24px;
-  }
-
-  .gate-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--gold);
-    border-radius: 4px;
-    padding: 28px 32px;
-  }
-
-  .gate-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--t3);
-    margin-bottom: 10px;
-  }
-
-  .gate-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--t1);
-    margin-bottom: 10px;
-  }
-
-  .gate-card p {
-    font-size: 0.88rem;
-    color: var(--t2);
-    line-height: 1.65;
-  }
-
-  /* ── QUEST CARDS ───────────────────────────────────── */
-  .section {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 0 24px 72px;
-  }
-
-  .section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--t3);
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .quest-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 12px;
-  }
-
-  .quest-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 20px 22px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quest-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--gold);
-  }
-
-  .quest-card.blue::before  { background: var(--blue-l); }
-  .quest-card.green::before { background: var(--green-l); }
-  .quest-card.red::before   { background: var(--red-l); }
-
-  .quest-type {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--t3);
-    margin-bottom: 6px;
-  }
-
-  .quest-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--t1);
-    margin-bottom: 8px;
-  }
-
-  .quest-card p {
-    font-size: 0.82rem;
-    color: var(--t2);
-    line-height: 1.55;
-  }
-
-  /* ── DOC ROW ───────────────────────────────────────── */
-  .doc-row {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .doc-card {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 18px 22px;
-    text-decoration: none;
-    transition: border-color 0.2s;
-  }
-
-  .doc-card:hover { border-color: var(--gold); }
-
-  .doc-icon {
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    color: var(--t3);
-  }
-
-  .doc-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 0.92rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--t1);
-    margin-bottom: 2px;
-  }
-
-  .doc-desc {
-    font-size: 0.78rem;
-    color: var(--t3);
-  }
-
-  .doc-arrow {
-    margin-left: auto;
-    color: var(--t3);
-    font-size: 0.9rem;
-    flex-shrink: 0;
-    transition: color 0.2s;
-  }
-
-  .doc-card:hover .doc-arrow { color: var(--gold-l); }
-
-  /* ── DIVIDER ───────────────────────────────────────── */
-  .divider {
-    max-width: 1040px;
-    margin: 0 auto 72px;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: var(--t3);
-    font-size: 0.7rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-  }
-
-  /* ── FOOTER ────────────────────────────────────────── */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 28px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .footer-brand {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 0.95rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  footer p {
-    font-size: 0.72rem;
-    color: var(--t3);
-  }
-
-  /* ── RESPONSIVE ────────────────────────────────────── */
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    .hero { padding: 60px 20px 52px; }
-    .section, .gate-wrap { padding-left: 20px; padding-right: 20px; }
-    footer { padding: 24px 20px; }
-  }
-</style>
+<link rel="stylesheet" href="eg.css">
 </head>
 <body>
 
 <nav>
-  <span class="nav-brand">Epic Grind</span>
+  <a href="index.html" class="nav-brand">Epic Grind</a>
   <div class="nav-status">
     <span class="status-dot"></span>
     Early Alpha · Select Access
@@ -390,6 +32,42 @@
   </p>
 </section>
 
+<!-- ── DOWNLOAD SECTION ─────────────────────────────── -->
+<div class="dl-wrap">
+  <div class="section-label" style="margin-bottom:16px;">Get the Build</div>
+  <div class="dl-grid">
+
+    <a href="android.html" class="dl-card dl-android">
+      <div class="dl-platform-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <path d="M17.6 9.48l1.84-3.18c.16-.26.06-.6-.2-.76s-.6-.06-.76.2l-1.87 3.22A9.7 9.7 0 0 0 12 8a9.7 9.7 0 0 0-4.61 1.16L5.52 5.94c-.16-.26-.5-.36-.76-.2-.26.16-.36.5-.2.76L6.4 9.48A9.96 9.96 0 0 0 2 18h20a9.96 9.96 0 0 0-4.4-8.52zM7 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="dl-info">
+        <div class="dl-platform">Android</div>
+        <div class="dl-status-tag wip">Under Construction</div>
+        <div class="dl-sub">APK · Sideload install guide</div>
+      </div>
+      <span class="dl-arrow">→</span>
+    </a>
+
+    <a href="ios.html" class="dl-card dl-ios">
+      <div class="dl-platform-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.37 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="dl-info">
+        <div class="dl-platform">iOS</div>
+        <div class="dl-status-tag wip">Under Construction</div>
+        <div class="dl-sub">TestFlight · Invite-only guide</div>
+      </div>
+      <span class="dl-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<!-- ── GATE CARD ─────────────────────────────────────── -->
 <div class="gate-wrap">
   <div class="gate-card">
     <div class="gate-label">Current Status</div>
@@ -408,37 +86,29 @@
     <div class="quest-card">
       <div class="quest-type">Day One</div>
       <div class="quest-name">Your Intake</div>
-      <p>
-        Orin doesn't care where you're from. Five movements. Live data.
-        Your first session is calibrated from the first rep — not a dropdown menu.
-      </p>
+      <p>Orin doesn't care where you're from. Five movements. Live data.
+      Your first session is calibrated from the first rep — not a dropdown menu.</p>
     </div>
 
     <div class="quest-card blue">
       <div class="quest-type">Every Session</div>
       <div class="quest-name">Assignments</div>
-      <p>
-        Quests are real work. Push, pull, lower, core — every session, every tier.
-        The story advances. So do you.
-      </p>
+      <p>Quests are real work. Push, pull, lower, core — every session, every tier.
+      The story advances. So do you.</p>
     </div>
 
     <div class="quest-card green">
       <div class="quest-type">Field Alerts</div>
       <div class="quest-name">Things Go Wrong</div>
-      <p>
-        Mid-session, something unexpected. A different demand, a harder ask.
-        Plans survive until first contact.
-      </p>
+      <p>Mid-session, something unexpected. A different demand, a harder ask.
+      Plans survive until first contact.</p>
     </div>
 
     <div class="quest-card red">
       <div class="quest-type">The Long Game</div>
       <div class="quest-name">Progression</div>
-      <p>
-        Weeks build into months. Strength cycles into endurance.
-        The program doesn't plateau. It doesn't let you plateau either.
-      </p>
+      <p>Weeks build into months. Strength cycles into endurance.
+      The program doesn't plateau. It doesn't let you plateau either.</p>
     </div>
 
   </div>
@@ -450,20 +120,12 @@
   <div class="section-label">Documents</div>
   <div class="doc-row">
     <a class="doc-card" href="docs/fitness-methodology-r1.pdf" target="_blank">
-      <span class="doc-icon">&#128196;</span>
+      <span class="doc-icon">📄</span>
       <div>
         <div class="doc-title">Fitness Methodology</div>
         <div class="doc-desc">The engine behind the quests — intake, scaling, session architecture. PDF · A4 landscape</div>
       </div>
-      <span class="doc-arrow">&#8594;</span>
-    </a>
-    <a class="doc-card" href="https://github.com/stembl/epic-grind-web/releases" target="_blank">
-      <span class="doc-icon">&#9660;</span>
-      <div>
-        <div class="doc-title">Releases</div>
-        <div class="doc-desc">Android APK builds — no login required to download</div>
-      </div>
-      <span class="doc-arrow">&#8594;</span>
+      <span class="doc-arrow">→</span>
     </a>
   </div>
 </section>
