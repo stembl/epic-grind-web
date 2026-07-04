@@ -112,15 +112,25 @@
     margin: 0;
   }
 
+  /* Base styles — apply to all media */
   html, body {
-    width: 297mm;
-    height: 210mm;
     background: var(--bg);
     color: var(--t1);
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     font-size: 7.2pt;
     line-height: 1.35;
-    overflow: hidden;
+  }
+
+  /* Print-only: lock to A4 landscape */
+  @media print {
+    html, body {
+      width: 297mm;
+      height: 210mm;
+      overflow: hidden;
+    }
+    #toolbar { display: none !important; }
+    #page-wrap { padding: 0 !important; }
+    body { padding-top: 0 !important; }
   }
 
   /* ── LAYOUT ──────────────────────────────────────────────── */
