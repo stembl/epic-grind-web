@@ -447,6 +447,221 @@
     </div>
   </div>
 
+  <!-- ── DIVIDER ──────────────────────────────────────────── -->
+  <div style="border-top:2px solid var(--gold); padding-top:36px; margin: 0 0 48px;">
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.4rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--gold-l);">Part 2 — Testing on Android</div>
+    <p style="font-size:0.88rem; color:var(--t2); margin-top:8px; line-height:1.6;">
+      These steps set up a live Android testing environment identical to the main dev machine.
+      You run the app on a real phone, make a change, and see it update in seconds.
+    </p>
+  </div>
+
+  <!-- ── STEP 8 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">8</span>
+      <span class="step-title">Install <em>Flutter</em></span>
+    </div>
+    <div class="step-body">
+      <p>Flutter is the framework the app is built in. You need it installed locally to run and rebuild the app.
+      The agent handles the commands — you just need the tools present.</p>
+
+      <div class="action-card green">
+        <div class="action-label">Do this</div>
+        <p>Open Cursor with the epic-grind project folder open. Open the chat panel (<strong>Ctrl+L</strong>) and paste this prompt exactly:</p>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Install Flutter</div>
+        <p>"Check whether Flutter is installed on this machine by running 'flutter --version' in the terminal. If it is not installed, give me the exact steps to install it for my OS, including adding it to PATH. Do not guess — run the check first and report what you find."</p>
+      </div>
+      <p>The agent will detect your OS and walk you through installation. Follow each step it gives you,
+      then run the check again at the end to confirm it worked.</p>
+
+      <div class="action-card amber">
+        <div class="action-label">Windows note</div>
+        <p>Flutter requires adding itself to your system PATH. The agent will show you exactly how.
+        After updating PATH, <strong>close and reopen the terminal</strong> before running any flutter commands.</p>
+      </div>
+
+      <p>Once Flutter is confirmed installed, run this to install the project's dependencies:</p>
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Install dependencies</div>
+        <p>"Run 'flutter pub get' in the terminal from the epic-grind project root. Report any errors."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 9 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">9</span>
+      <span class="step-title">Connect Your <em>Android Device</em></span>
+    </div>
+    <div class="step-body">
+      <p>You need a physical Android phone or a computer fast enough to run an emulator.
+      A real phone is easier and gives you a better read on how the app actually feels.</p>
+
+      <p><strong>On your Android phone:</strong></p>
+      <div class="action-card green">
+        <div class="action-label">Enable Developer Mode</div>
+        <p>Go to <strong>Settings → About phone</strong>. Tap <strong>Build number</strong> seven times in a row.
+        You'll see "You are now a developer." Go back to Settings — a new <strong>Developer options</strong> menu has appeared.</p>
+      </div>
+      <div class="action-card green">
+        <div class="action-label">Enable USB Debugging</div>
+        <p>Inside Developer options, turn on <strong>USB debugging</strong>. Plug your phone into your computer with a USB cable.
+        A prompt will appear on the phone asking to trust this computer — tap <strong>Always allow</strong>.</p>
+      </div>
+
+      <p>Now confirm the device is visible:</p>
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Confirm device detected</div>
+        <p>"Run 'flutter devices' in the terminal and tell me what devices are listed. If my Android phone is not showing, tell me what might be wrong and how to fix it without guessing — run diagnostics first."</p>
+      </div>
+
+      <div class="action-card blue">
+        <div class="action-label">Using an emulator instead</div>
+        <p>If you don't have a physical device, ask the agent: <em>"Set up an Android emulator on this machine using Android Studio's AVD Manager. Walk me through it step by step."</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 10 ──────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">10</span>
+      <span class="step-title">Run the App on <em>Device</em></span>
+    </div>
+    <div class="step-body">
+      <p>This launches the app directly onto your connected phone. The first build takes 2–5 minutes.
+      After that, changes update in seconds via hot reload.</p>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Launch app</div>
+        <p>"Run the app on my connected Android device using 'flutter run'. If there is more than one device available, ask me which one to use before running. Report any build errors in full."</p>
+      </div>
+
+      <p>The app will install and open on your phone. The terminal stays active — keep it open.</p>
+
+      <p><strong>While the app is running, these keyboard shortcuts work in the terminal:</strong></p>
+      <div class="code-block"><code><span class="gold">r</span>  <span class="dim">— hot reload (apply code changes instantly, keeps app state)</span>
+<span class="gold">R</span>  <span class="dim">— hot restart (full restart, resets state)</span>
+<span class="gold">q</span>  <span class="dim">— quit</span></code></div>
+
+      <div class="action-card amber">
+        <div class="action-label">If the build fails</div>
+        <p>Copy the full error text from the terminal and paste it to the agent: <em>"Flutter build failed with this error. Diagnose and fix it: [paste error]"</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 11 ──────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">11</span>
+      <span class="step-title">Make a Change and <em>See It Live</em></span>
+    </div>
+    <div class="step-body">
+      <p>This is the core loop: describe what you want changed → agent edits the code → hot reload → see it on your phone.
+      No build step needed for most changes.</p>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Change quest prose</div>
+        <p>"In quests.dart, find the assignment text for personal_day3. Rewrite it to open with immediate action — something is already wrong when the user arrives. Keep it under 60 words. Do not change any other fields in that quest."</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Change a UI label</div>
+        <p>"Find where the 'Move out' button label is defined in quest_screen.dart and change it to 'Into the breach'. Only change the label text, nothing else."</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Add a story day</div>
+        <p>"In quests.dart, show me the structure of an existing story-type quest so I can see the exact format. Then I'll tell you what to add."</p>
+      </div>
+
+      <p>After the agent makes changes, go to your terminal and press <strong>r</strong> to hot reload.
+      The change appears on the phone within 2 seconds. No reinstall required.</p>
+
+      <div class="action-card amber">
+        <div class="action-label">When hot reload isn't enough</div>
+        <p>Some changes (new screens, new data structures, navigation changes) require a full restart.
+        Press <strong>R</strong> in the terminal instead of <strong>r</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 12 ──────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">12</span>
+      <span class="step-title">Build a <em>Shareable APK</em></span>
+    </div>
+    <div class="step-body">
+      <p>When you've tested a set of changes and they're solid, build a release APK that can be installed
+      on any Android device without a cable. This is what gets shared as a tester build.</p>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Build release APK</div>
+        <p>"Build a release APK using 'flutter build apk --release'. Run it from the epic-grind project root. When it finishes, tell me the exact file path of the output APK and its file size."</p>
+      </div>
+
+      <p>The APK will be at <code style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--green-l); background:#030810; padding:2px 6px; border-radius:2px;">build/app/outputs/flutter-apk/app-release.apk</code> inside the project folder.
+      Build takes 3–8 minutes the first time.</p>
+
+      <div class="action-card green">
+        <div class="action-label">Share the build</div>
+        <p>Send the APK file to Steve, or follow the release process on the GitHub repo
+        to attach it to a release. Do not share release APKs publicly without Steve's sign-off.</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Full test cycle after changes</div>
+        <p>"I've made changes to [list what you changed]. Before I build the APK, check the affected files for any obvious errors, missing required fields, or inconsistencies with the surrounding code. Report findings — do not fix anything yet."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 13 ──────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">13</span>
+      <span class="step-title">The Full <em>Change Loop</em></span>
+    </div>
+    <div class="step-body">
+      <p>Every session follows the same pattern. Once it's muscle memory, each cycle takes minutes.</p>
+      <div class="code-block"><code><span class="dim"># 1. Get current with main</span>
+<span class="gold">git checkout main</span>
+<span class="gold">git pull origin main</span>
+
+<span class="dim"># 2. Create a branch for your work</span>
+<span class="gold">git checkout -b your-name/what-youre-changing</span>
+
+<span class="dim"># 3. Launch app on device (keep terminal open)</span>
+<span class="gold">flutter run</span>
+
+<span class="dim"># 4. Describe changes to agent → press r to reload → test on phone</span>
+<span class="dim"># 5. Repeat until it's right</span>
+
+<span class="dim"># 6. Review before committing</span>
+<span class="dim">#    Ask agent: "Review everything I changed this session."</span>
+
+<span class="dim"># 7. Commit and push</span>
+<span class="gold">git add -A</span>
+<span class="gold">git commit -m "description of what changed"</span>
+<span class="gold">git push origin your-branch-name</span>
+
+<span class="dim"># 8. Open a pull request on github.com/stembl/epic-grind</span></code></div>
+
+      <div class="action-card blue">
+        <div class="action-label">If you break something</div>
+        <p>If the app stops launching or something breaks unexpectedly, ask the agent:
+        <em>"Show me every file I've changed since my last commit using 'git diff'. Walk me through what changed and identify what's most likely broken."</em>
+        You can also run <strong>git stash</strong> to temporarily revert all changes and confirm the app runs clean.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- ── QUICK REFERENCE ────────────────────────────────── -->
   <div style="border-top: 1px solid var(--rule); padding-top: 36px; margin-top: 12px;">
     <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--t3); margin-bottom:20px;">Quick Reference — Agent Prompts</div>
@@ -474,6 +689,27 @@
     <div class="prompt-box">
       <div class="prompt-label">When you're stuck</div>
       <p>"I'm trying to [goal] but I'm not sure where to start. Walk me through it step by step."</p>
+    </div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--t3); margin: 24px 0 16px;">Android Testing Prompts</div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Check environment</div>
+      <p>"Run 'flutter doctor' and explain every warning or error in plain language. Tell me what to fix and what can be ignored."</p>
+    </div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Device not showing up</div>
+      <p>"Run 'flutter devices' and 'adb devices'. My phone is plugged in but not appearing — diagnose why without guessing."</p>
+    </div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Build error</div>
+      <p>"Flutter build failed. Here is the full error output: [paste]. Identify the root cause and fix it."</p>
+    </div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Verify changes before building</div>
+      <p>"Show me every file I've changed since my last commit using 'git diff --stat'. Walk me through each change and confirm nothing looks unintentional."</p>
+    </div>
+    <div class="prompt-box">
+      <div class="prompt-label">Runtime crash</div>
+      <p>"The app crashed on my phone. Show me the last 50 lines of flutter output from the terminal and tell me what caused it."</p>
     </div>
   </div>
 
