@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epic Grind · Join the Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eg.css">
+<style>
+  /* ── PAGE-SPECIFIC ──────────────────────────────────── */
+  .guide-wrap {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+
+  .step-block {
+    margin-bottom: 48px;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+    text-align: right;
+  }
+
+  .step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--t1);
+  }
+
+  .step-title em {
+    color: var(--gold-l);
+    font-style: normal;
+  }
+
+  .step-body p {
+    font-size: 0.9rem;
+    color: var(--t2);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .step-body p:last-child { margin-bottom: 0; }
+
+  .step-body strong { color: var(--t1); font-weight: 500; }
+
+  .step-body a {
+    color: var(--gold-l);
+    text-decoration: none;
+  }
+  .step-body a:hover { text-decoration: underline; }
+
+  /* inline action card */
+  .action-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin: 14px 0;
+  }
+
+  .action-card.blue  { border-left-color: var(--blue-l); }
+  .action-card.green { border-left-color: var(--green-l); }
+  .action-card.amber { border-left-color: var(--amber-l); }
+
+  .action-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--t3);
+    margin-bottom: 6px;
+  }
+
+  .action-card p {
+    font-size: 0.85rem;
+    color: var(--t2);
+    line-height: 1.6;
+    margin-bottom: 0 !important;
+  }
+
+  /* terminal / code blocks */
+  .code-block {
+    background: #030810;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    overflow-x: auto;
+  }
+
+  .code-block code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--green-l);
+    white-space: pre;
+    line-height: 1.7;
+  }
+
+  .code-block code .dim   { color: var(--t3); }
+  .code-block code .gold  { color: var(--gold-l); }
+  .code-block code .white { color: var(--t1); }
+  .code-block code .amber { color: var(--amber-l); }
+
+  /* agent prompt boxes */
+  .prompt-box {
+    background: rgba(58, 126, 192, 0.06);
+    border: 1px solid rgba(90, 159, 216, 0.2);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 10px 0;
+  }
+
+  .prompt-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue-l);
+    margin-bottom: 6px;
+  }
+
+  .prompt-box p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--t1);
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+
+  .contact-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin: 14px 0;
+  }
+
+  .contact-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--t3);
+    margin-bottom: 6px;
+  }
+
+  .contact-block p {
+    font-size: 0.88rem;
+    color: var(--t2);
+    line-height: 1.6;
+    margin-bottom: 0 !important;
+  }
+
+  .contact-block strong { color: var(--gold-l) !important; }
+
+  .pill-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+
+  .pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    color: var(--t3);
+  }
+
+  .pill.green { border-color: rgba(69,181,117,0.3); color: var(--green-l); background: rgba(69,181,117,0.06); }
+  .pill.blue  { border-color: rgba(90,159,216,0.3); color: var(--blue-l);  background: rgba(90,159,216,0.06); }
+  .pill.gold  { border-color: rgba(226,170,66,0.3);  color: var(--gold-l);  background: rgba(226,170,66,0.06); }
+
+  @media (max-width: 600px) {
+    .guide-wrap { padding-left: 16px; padding-right: 16px; }
+    .step-num { font-size: 1.4rem; width: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Epic Grind</a>
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    Collaborator Onboarding
+  </div>
+</nav>
+
+<a href="index.html" class="back-link">← Back</a>
+
+<div class="guide-wrap">
+
+  <div style="margin-bottom: 48px;">
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--t3); margin-bottom:10px;">Internal · Not for public distribution</div>
+    <h1 style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:clamp(2rem,6vw,3rem); letter-spacing:0.03em; text-transform:uppercase; color:var(--t1); line-height:1; margin-bottom:16px;">Join the Build</h1>
+    <p style="font-size:0.95rem; color:var(--t2); max-width:540px; line-height:1.7;">
+      This walks you through going from zero to making real contributions to Epic Grind.
+      No prior dev experience required. You'll be writing prompts, not code.
+    </p>
+    <div class="pill-row">
+      <span class="pill green">~30 min setup</span>
+      <span class="pill blue">Windows or Mac</span>
+      <span class="pill gold">Cursor AI included</span>
+    </div>
+  </div>
+
+  <!-- ── STEP 1 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">1</span>
+      <span class="step-title">Create a <em>GitHub Account</em></span>
+    </div>
+    <div class="step-body">
+      <p>GitHub is where the code lives. You need a free account to get access to the project.</p>
+      <div class="action-card green">
+        <div class="action-label">Do this</div>
+        <p>Go to <a href="https://github.com/signup" target="_blank">github.com/signup</a> and create a free account.
+        Pick a username you're comfortable with — it'll appear in commits.</p>
+      </div>
+      <p>Once your account is set up, <strong>send Steve your GitHub username or the email address you signed up with.</strong>
+      He'll add you as a collaborator on the repository.</p>
+      <div class="contact-block">
+        <div class="contact-label">Send Steve</div>
+        <p>Your GitHub username (e.g. <strong>john-doe</strong>) or the email you used to sign up.
+        Steve will invite you to the repo — you'll get an email from GitHub to accept.</p>
+      </div>
+      <p>Accept the invite before moving to the next step. The invite email comes from <strong>noreply@github.com</strong>
+      and expires after 7 days.</p>
+    </div>
+  </div>
+
+  <!-- ── STEP 2 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">2</span>
+      <span class="step-title">Install <em>Cursor</em></span>
+    </div>
+    <div class="step-body">
+      <p>Cursor is a code editor with a built-in AI agent. You use it to explore the project,
+      understand what everything does, and make changes by describing what you want in plain English.</p>
+      <div class="action-card green">
+        <div class="action-label">Do this</div>
+        <p>Go to <a href="https://cursor.com" target="_blank">cursor.com</a>, download the installer for your OS (Windows or Mac), and run it.
+        It installs like any other app.</p>
+      </div>
+      <p>On first launch, Cursor will ask you to sign in or create an account. Use your email.
+      The free tier is sufficient to get started.</p>
+      <div class="action-card amber">
+        <div class="action-label">Note</div>
+        <p>Cursor is built on VS Code. If you've used VS Code before, it's identical except for the AI panel on the right side.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 3 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">3</span>
+      <span class="step-title">Clone the <em>Repository</em></span>
+    </div>
+    <div class="step-body">
+      <p>"Cloning" downloads a local copy of the project to your machine so you can work on it.
+      Changes you make stay local until you intentionally push them back up.</p>
+      <div class="action-card green">
+        <div class="action-label">Do this</div>
+        <p>Open Cursor. Press <strong>Ctrl+Shift+P</strong> (Windows) or <strong>Cmd+Shift+P</strong> (Mac)
+        to open the command palette. Type <strong>Git: Clone</strong> and hit Enter.</p>
+      </div>
+      <p>When prompted for a URL, paste:</p>
+      <div class="code-block"><code>https://github.com/stembl/epic-grind.git</code></div>
+      <p>Choose a folder on your machine to save it to (e.g. <strong>C:\work</strong> or <strong>~/projects</strong>).
+      Cursor will download the project and ask if you want to open the folder — say yes.</p>
+      <div class="action-card blue">
+        <div class="action-label">Alternative — Terminal</div>
+        <p>Open Cursor's built-in terminal with <strong>Ctrl+`</strong> and run:</p>
+      </div>
+      <div class="code-block"><code><span class="dim">$</span> <span class="white">git clone https://github.com/stembl/epic-grind.git</span>
+<span class="dim">$</span> <span class="white">cd epic-grind</span></code></div>
+    </div>
+  </div>
+
+  <!-- ── STEP 4 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">4</span>
+      <span class="step-title">Learn the Project with <em>Cursor AI</em></span>
+    </div>
+    <div class="step-body">
+      <p>Before changing anything, spend 15 minutes asking the AI to orient you.
+      Open the chat panel (<strong>Ctrl+L</strong> or click the chat icon on the right sidebar) and try these prompts:</p>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Project overview</div>
+        <p>"Walk me through the project structure. What does each top-level folder contain and what is its purpose?"</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Understand the game loop</div>
+        <p>"Explain how quests work end-to-end. Starting from when the user taps a quest card, what code runs and in what order?"</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Find where things live</div>
+        <p>"Where is all the story and quest text written? Show me an example quest and explain how the prose variables work."</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Understand the data layer</div>
+        <p>"How does the app save user progress? What goes to Supabase and what stays local?"</p>
+      </div>
+
+      <p>The AI has full context of the codebase. Ask it anything — there are no dumb questions here.
+      If an answer doesn't make sense, ask it to explain differently or give an example.</p>
+    </div>
+  </div>
+
+  <!-- ── STEP 5 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">5</span>
+      <span class="step-title">Make Changes <em>Safely</em></span>
+    </div>
+    <div class="step-body">
+      <p>Never work directly on <strong>main</strong>. Always create a branch first.
+      A branch is an isolated copy of the code where your changes can't break anything until they're reviewed.</p>
+
+      <p>Open the terminal (<strong>Ctrl+`</strong>) and create a branch with a name that describes what you're doing:</p>
+      <div class="code-block"><code><span class="dim">$</span> <span class="white">git checkout -b </span><span class="gold">your-name/what-youre-changing</span>
+<span class="dim"># examples:</span>
+<span class="dim">$</span> <span class="white">git checkout -b </span><span class="gold">alex/week3-quest-prose</span>
+<span class="dim">$</span> <span class="white">git checkout -b </span><span class="gold">alex/fix-xp-display</span></code></div>
+
+      <p>Now describe your change to the AI agent and let it make the edits:</p>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Before making any change</div>
+        <p>"I want to [describe what you want to change]. What files would be affected and what's the safest way to do this?"</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Making the change</div>
+        <p>"Update the assignment prose for personal_day5 to feel more urgent and raise the tension. Keep the same voice as the surrounding quests."</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Review before committing</div>
+        <p>"Review the changes you just made. Are there any issues, typos, or things that could break? Check for consistency with the rest of the file."</p>
+      </div>
+
+      <div class="action-card amber">
+        <div class="action-label">Rule of thumb</div>
+        <p>If you're not sure whether a change is safe, ask the agent: <em>"What would break if I changed this?"</em>
+        before touching it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 6 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">6</span>
+      <span class="step-title">Commit and <em>Push</em></span>
+    </div>
+    <div class="step-body">
+      <p>Once your changes look right, save them to Git and push them up so Steve can review.</p>
+
+      <p><strong>Check what changed:</strong></p>
+      <div class="code-block"><code><span class="dim">$</span> <span class="white">git status</span>
+<span class="dim">$</span> <span class="white">git diff</span></code></div>
+
+      <p><strong>Stage and commit:</strong></p>
+      <div class="code-block"><code><span class="dim">$</span> <span class="white">git add -A</span>
+<span class="dim">$</span> <span class="white">git commit -m "</span><span class="gold">Brief description of what you changed</span><span class="white">"</span>
+<span class="dim"># examples:</span>
+<span class="dim">#</span> <span class="amber">git commit -m "Update day 5 assignment prose to raise tension"</span>
+<span class="dim">#</span> <span class="amber">git commit -m "Fix typo in Orin dialogue on calibration screen"</span></code></div>
+
+      <p><strong>Push your branch:</strong></p>
+      <div class="code-block"><code><span class="dim">$</span> <span class="white">git push origin </span><span class="gold">your-branch-name</span></code></div>
+
+      <p>Then open a Pull Request on GitHub so Steve can review and merge it:</p>
+      <div class="action-card green">
+        <div class="action-label">Do this</div>
+        <p>Go to <a href="https://github.com/stembl/epic-grind" target="_blank">github.com/stembl/epic-grind</a>.
+        GitHub will show a yellow banner saying your branch was recently pushed — click <strong>Compare &amp; pull request</strong>.
+        Add a short description of what you changed and why, then click <strong>Create pull request</strong>.</p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Agent prompt — Write your PR description</div>
+        <p>"Help me write a pull request description for the changes I just made. Keep it short — what changed and why."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 7 ───────────────────────────────────────── -->
+  <div class="step-block">
+    <div class="step-header">
+      <span class="step-num">7</span>
+      <span class="step-title">Staying <em>Up to Date</em></span>
+    </div>
+    <div class="step-body">
+      <p>Other people (and the main dev) push changes regularly. Keep your local copy current before starting new work:</p>
+      <div class="code-block"><code><span class="dim">$</span> <span class="white">git checkout main</span>
+<span class="dim">$</span> <span class="white">git pull origin main</span></code></div>
+      <p>Then create a new branch from the updated main for your next change. Never work directly on main.</p>
+
+      <div class="action-card amber">
+        <div class="action-label">If you get a merge conflict</div>
+        <p>This happens when two people changed the same file. Don't panic — ask the agent:
+        <em>"I have a merge conflict in [filename]. Walk me through resolving it safely."</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUICK REFERENCE ────────────────────────────────── -->
+  <div style="border-top: 1px solid var(--rule); padding-top: 36px; margin-top: 12px;">
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--t3); margin-bottom:20px;">Quick Reference — Agent Prompts</div>
+
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Understand any file</div>
+      <p>"Explain what this file does and how it connects to the rest of the app."</p>
+    </div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Find where something is</div>
+      <p>"Where is the text for [screen/feature] written? Show me the relevant code."</p>
+    </div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Propose a change safely</div>
+      <p>"I want to change [X]. What's the safest approach and what could break?"</p>
+    </div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Review your work</div>
+      <p>"Review the changes I just made. Any issues, inconsistencies, or things to watch out for?"</p>
+    </div>
+    <div class="prompt-box" style="margin-bottom:8px;">
+      <div class="prompt-label">Fix something broken</div>
+      <p>"The app is showing [describe the problem]. What's causing it and how do I fix it?"</p>
+    </div>
+    <div class="prompt-box">
+      <div class="prompt-label">When you're stuck</div>
+      <p>"I'm trying to [goal] but I'm not sure where to start. Walk me through it step by step."</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-brand">Epic Grind</span>
+  <p>Internal · Not for public distribution · © 2026 Steve Embleton</p>
+</footer>
+
+</body>
+</html>
